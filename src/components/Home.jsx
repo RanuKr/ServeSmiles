@@ -57,14 +57,12 @@ function Home() {
         </p>
 
       </div>
-      <div className="max-w-7xl  mx-auto ">
-      <video className="w-full h-96" controls>
-  <source src="src\assets\foodcrisis.mp4" type="video/mp4" />
- 
-  Your browser does not support the video tag.
-</video>
-
-      </div>
+      <iframe
+          className="w-full h-96"
+          src="https://www.youtube.com/embed/1ZvdF5-1HQ0?autoplay=1"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
 
       <div className="m-20 max-w-full">
         <div className="grid justify-items-center m-10">
