@@ -58,11 +58,12 @@ function Home() {
 
       </div>
       <iframe
-          className="w-full h-96"
-          src="https://www.youtube.com/embed/1ZvdF5-1HQ0?autoplay=1"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
+  className="w-full h-96"
+  src="https://www.youtube.com/embed/RGTymlRNhkU?autoplay=1&start=18"
+  frameborder="0"
+  allowfullscreen
+></iframe>
+
 
       <div className="m-20 max-w-full">
         <div className="grid justify-items-center m-10">
