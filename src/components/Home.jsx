@@ -59,7 +59,8 @@ function Home() {
       </div>
       <div className="max-w-7xl  mx-auto ">
       <video className="w-full h-96" controls>
-  <source src="src\assets\food crisis.mp4" type="video/mp4" />
+  <source src="src\assets\foodcrisis.mp4" type="video/mp4" />
+ 
   Your browser does not support the video tag.
 </video>
 
