@@ -58,12 +58,11 @@ function Home() {
 
       </div>
       <div className="max-w-7xl  mx-auto ">
-        <iframe
-          className="w-full h-96"
-          src="src\assets\food crisis.mp4"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
+      <video className="w-full h-96" controls>
+  <source src="src\assets\food crisis.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
       </div>
 
       <div className="m-20 max-w-full">
