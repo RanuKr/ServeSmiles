@@ -47,13 +47,12 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-[#7E8F90] text-white rounded-full container mx-auto my-8 pt-9 pb-1  text-center px-20">
+      <div className="bg-[#7E8F90] text-white rounded-full container mx-auto my-5 pt-9 pb-1  text-center px-20">
         <h2 className="text-4xl font-bold mb-4">About Us</h2>
         <p className="text-lg mb-8 mx-auto max-w-none">
             Welcome to <strong>ServeSmiles</strong>, an initiative built on the belief that a smile can spark hope and a single act of kindness can create lasting change. 
             Though we are a newly formed organization, we are already on a mission to brighten the lives of those facing hardships by providing not only meals but also the compassion and care they deserve.
-            At ServeSmiles, we understand that everyone deserves the dignity of a full stomach and the warmth of a supportive community. With the collective effort of volunteers, local businesses, and generous donors, we work tirelessly to ensure that no one is left behind.
-            We invite you to be part of this movement—because together, we can spread smiles, offer hope, and create a world where kindness knows no bounds. Let's build a future where no one is forgotten and everyone has a reason to smile.
+            At ServeSmiles, we understand that everyone deserves the dignity of a full stomach and the warmth of a supportive community.  Let's build a future where no one is forgotten and everyone has a reason to smile.
         </p>
 
       </div>

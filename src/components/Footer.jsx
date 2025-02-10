@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import Swal from 'sweetalert2';
 
 const Footer = () => {
@@ -60,7 +60,7 @@ const Footer = () => {
           &copy; {new Date().getFullYear()} ServeSmiles – Life Matters
         </p>
         <p className="text-center">
-          Made with by DevBY-Ranu
+          Made with Love
           <br />
           <a href="tel:+91 7091727303">+91 7091727303</a>
         </p>

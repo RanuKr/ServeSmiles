@@ -1,4 +1,4 @@
-import React from 'react';
+git import React from 'react';
 import headerImage from '../images/children bg.jpg'; // Corrected image path
 
 const Header = () => {

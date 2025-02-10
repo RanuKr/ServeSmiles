@@ -1,39 +1,39 @@
 
-import React, { useState } from 'react';
-import { useCookies } from 'react-cookie';
+// import React, { useState } from 'react';
+// import { useCookies } from 'react-cookie';
 
 import { Link } from 'react-router-dom';
 
 function SignIn() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [cookies, setCookie, removeCookie] = useCookies(['user']);
   
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch('http://127.0.0.1:5000/signIn', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setCookie('user', JSON.stringify(data), { path: '/' });
-        alert("Sign In success!");
-        window.location.href = '/';
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   fetch('http://127.0.0.1:5000/signIn', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       email: email,
+  //       password: password,
+  //     }),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setCookie('user', JSON.stringify(data), { path: '/' });
+  //       alert("Sign In success!");
+  //       window.location.href = '/';
        
         
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
 
   return (
     <div className="flex items-center justify-center h-screen ">

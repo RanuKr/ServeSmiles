@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import './App.css';
 import EventList from './EventList';
 import EventForm from './EventForm';
 import image1 from "../images/6.jpeg"
