@@ -48,10 +48,10 @@ const Footer = () => {
             <i className="fab fa-instagram"></i>
           </a>
         
-          <a href="https://github.com/RanuKr" className="text-xl mx-2" target="_blank" rel="noopener noreferrer">
+          <a href="#" className="text-xl mx-2" target="_blank" rel="noopener noreferrer">
             <i className="fab fa-github"></i>
           </a>
-          <a href="https://www.linkedin.com/in/ranu-kumar-b03120284/" className="text-xl mx-2" target="_blank" rel="noopener noreferrer">
+          <a href="#" className="text-xl mx-2" target="_blank" rel="noopener noreferrer">
             <i className="fab fa-linkedin"></i>
           </a>
         </div>
@@ -62,7 +62,7 @@ const Footer = () => {
         <p className="text-center">
           Made with Love
           <br />
-          <a href="tel:+91 7091727303">+91 7091727303</a>
+          <a href="tel:+91 7055727303">+91 7055727303</a>
         </p>
       </div>
     </footer>

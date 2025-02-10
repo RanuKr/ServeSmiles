@@ -47,8 +47,8 @@ function ContactUs() {
         </button>
       </form>
       <p className="mt-6">Reach out with any comments or queries you might have</p>
-      <p>Contact Us: +91 7091727303/+91 7091725456</p>
-      <p>Email Address: kumar.ranu9386@gmail.com</p>
+      <p>Contact Us: +91 7055727303/+91 7091725456</p>
+      <p>Email Address: servesmiles.info.co.in</p>
     </div>
   
 
