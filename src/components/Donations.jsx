@@ -64,6 +64,7 @@ const Donations = () => {
             adversity, offering them access to education and fulfilling their
             basic needs.
           </p>
+          
           <div className="mt-4">
             <p className="text-gray-700">
               "The joy of giving lasts longer than the pleasure of receiving."
@@ -73,8 +74,10 @@ const Donations = () => {
               difference."
             </p>
           </div>
+        
         </div>
       </div>
+      
     </div>
     </>
   );

@@ -1,10 +1,9 @@
+import { Formik, Field, Form, ErrorMessage, useField } from "formik";
+import * as Yup from "yup";
+import image1 from "../images/12.jpeg";
+import { useCookies } from "react-cookie";
 
-
-import { Formik, Field, Form, ErrorMessage, useField } from 'formik';
-import * as Yup from 'yup'
-import image1 from "../images/12.jpeg"
-import { useCookies } from 'react-cookie';
-
+// Custom Input Component
 const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
@@ -15,7 +14,9 @@ const MyTextInput = ({ label, ...props }) => {
       <input
         {...field}
         {...props}
-        className="block w-full mt-1 p-2 border rounded shadow-sm"
+        className={`block w-full mt-1 p-2 border rounded shadow-sm ${
+          meta.touched && meta.error ? "border-red-500" : "border-gray-300"
+        }`}
       />
       {meta.touched && meta.error ? (
         <div className="text-sm text-red-500">{meta.error}</div>
@@ -24,8 +25,9 @@ const MyTextInput = ({ label, ...props }) => {
   );
 };
 
+// Custom Checkbox Component
 const MyCheckbox = ({ children, ...props }) => {
-  const [field, meta] = useField({ ...props, type: 'checkbox' });
+  const [field, meta] = useField({ ...props, type: "checkbox" });
   return (
     <div className="mb-4">
       <label className="flex items-center">
@@ -33,7 +35,9 @@ const MyCheckbox = ({ children, ...props }) => {
           type="checkbox"
           {...field}
           {...props}
-          className="mr-2 leading-tight"
+          className={`mr-2 leading-tight ${
+            meta.touched && meta.error ? "border-red-500" : "border-gray-300"
+          }`}
         />
         <span className="text-sm font-medium text-gray-600">{children}</span>
       </label>
@@ -44,103 +48,144 @@ const MyCheckbox = ({ children, ...props }) => {
   );
 };
 
+// Main ItemForm Component
 const ItemForm = () => {
-  const [cookies] = useCookies(['user']); 
-  const user_id =cookies.user[0].id
+  const [cookies] = useCookies(["user"]);
+  const user_id = cookies.user && cookies.user.length > 0 ? cookies.user[0].id : null;
+
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen bg-gray-100">
       <Formik
         initialValues={{
-          name: '',
-          email: '',
-          items: '',
-          text: '',
+          name: "",
+          email: "",
+          items: "",
+          text: "",
           terms: false,
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .min(3, 'Not less than 3 symbols')
-            .required('Name Required'),
+            .min(3, "Name must be at least 3 characters")
+            .required("Name is required"),
           email: Yup.string()
-            .email('Invalid email address')
-            .required('Email Required'),
-          items: Yup.string().required('Select at least one item'),
+            .email("Invalid email address")
+            .required("Email is required"),
+          items: Yup.string().required("Please select an item"),
+          text: Yup.string().optional(),
           terms: Yup.boolean()
-            .required('Required')
-            .oneOf([true], 'Required'),
+            .required("You must agree to the privacy policy")
+            .oneOf([true], "You must agree to the privacy policy"),
         })}
-        onSubmit={(values, { setSubmitting }) =>{
-
-        
-          fetch(`http://127.0.0.1:5000/donateFood/${user_id}`,
-          {
-            method: 'POST',
+        onSubmit={(values, { setSubmitting }) => {
+          fetch(`http://127.0.0.1:5000/donateFood/${user_id}`, {
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              amount: values.items
-             
+              amount: values.items,
             }),
           })
-          
-            // Handle success
             .then((response) => response.json())
             .then((data) => {
-              console.log(data)
-          })
-          .catch((error) => {
-            // Handle error
-            console.error('API error:', error);
-          })
-          .finally(() => {
-            setSubmitting(false);
-          });
+              console.log("Success:", data);
+              alert("Donation submitted successfully!");
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("An error occurred. Please try again.");
+            })
+            .finally(() => {
+              setSubmitting(false);
+            });
         }}
-       >
-        <Form className="form p-6 bg-gray-300 rounded-lg w-2/5 h-100 shadow-md flex flex-col items-center justify-center">
-          <div className="mb-4">
-            <img src={image1} alt="Logo" className="w-16 h-16" />
-          </div>
-          <h2 className="text-2xl mb-4">Send Item Donation</h2>
-          <MyTextInput
-            label="Your name"
-            id="name"
-            name="name"
-            type="text"
-            autoComplete="off"
-          />
-          <MyTextInput
-            label="Your email"
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="off"
-          />
-          <label htmlFor="items">Choose items to Donate</label>
-          <Field id="items" name="items" as="select">
-            <option value="" disabled>
-              Select Items
-            </option>
-            <option value="Food">Food</option>
-            <option value="Clothes">Clothes</option>
-            <option value="Books">Books</option>
-            <option value="Cleaning Supplies">Cleaning Supplies</option>
-            <option value="Medical Supplies">Medical Supplies</option>
-            <option value="Hygiene Products">Hygiene Products</option>
-          </Field>
-          <ErrorMessage component="div" className="text-sm text-red-500" name="items" />
-          <label htmlFor="text">Your message</label>
-          <Field id="text" name="text" as="textarea" />
-          <ErrorMessage component="div" className="text-sm text-red-500" name="text" />
-          <MyCheckbox name="terms">Agree with privacy policy</MyCheckbox>
-          <button
-            type="submit"
-            className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Send
-          </button>
-        </Form>
+      >
+        {({ isSubmitting }) => (
+          <Form className="p-6 bg-white rounded-lg shadow-md w-full max-w-md">
+            <div className="mb-4 flex justify-center">
+              <img src={image1} alt="Logo" className="w-16 h-16" />
+            </div>
+            <h2 className="text-2xl font-bold mb-6 text-center">Send Item Donation</h2>
+
+            {/* Name Input */}
+            <MyTextInput
+              label="Your name"
+              id="name"
+              name="name"
+              type="text"
+              autoComplete="off"
+            />
+
+            {/* Email Input */}
+            <MyTextInput
+              label="Your email"
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="off"
+            />
+
+            {/* Items Dropdown */}
+            <div className="mb-4">
+              <label htmlFor="items" className="block text-sm font-medium text-gray-600 mb-1">
+                Choose items to Donate
+              </label>
+              <Field
+                id="items"
+                name="items"
+                as="select"
+                className="block w-full mt-1 p-2 border rounded shadow-sm"
+              >
+                <option value="" disabled>
+                  Select Items
+                </option>
+                <option value="Food">Food</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Books">Books</option>
+                <option value="Cleaning Supplies">Cleaning Supplies</option>
+                <option value="Medical Supplies">Medical Supplies</option>
+                <option value="Hygiene Products">Hygiene Products</option>
+              </Field>
+              <ErrorMessage
+                name="items"
+                component="div"
+                className="text-sm text-red-500"
+              />
+            </div>
+
+            {/* Message Textarea */}
+            <div className="mb-4">
+              <label htmlFor="text" className="block text-sm font-medium text-gray-600 mb-1">
+                Your message
+              </label>
+              <Field
+                id="text"
+                name="text"
+                as="textarea"
+                className="block w-full mt-1 p-2 border rounded shadow-sm"
+              />
+              <ErrorMessage
+                name="text"
+                component="div"
+                className="text-sm text-red-500"
+              />
+            </div>
+
+            {/* Terms Checkbox */}
+            <MyCheckbox name="terms">
+              Agree with privacy policy
+            </MyCheckbox>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              {isSubmitting ? "Submitting..." : "Send"}
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import EventList from './EventList';
-import EventForm from './EventForm';
+import EventForm from './Pages/EventForm';
 import image1 from "../images/6.jpeg"
 // import image2 from "../images/child.jpg"
 // import image3 from "../images/children.jpg"
